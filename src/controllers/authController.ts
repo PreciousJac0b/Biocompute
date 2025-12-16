@@ -3,22 +3,42 @@ import { AuthService } from '../services/authService';
 
 export class AuthController {
   static async register(req: Request, res: Response): Promise<void> {
-    const { email, password, firstname, lastname } = req.body;
-    const result = await AuthService.register({ email, password, firstname, lastname });
-    if (result.success) {
-      res.status(201).json(result);
-    } else {
-      res.status(400).json(result);
+    try {
+      const { email, password, firstname, lastname } = req.body;
+
+      const result = await AuthService.register({
+        email,
+        password,
+        firstname,
+        lastname,
+      });
+
+      res.status(result.success ? 201 : 400).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error",
+      });
     }
   }
 
   static async login(req: Request, res: Response): Promise<void> {
-    const { email, password } = req.body;
-    const result = await AuthService.login({ email, password });
-    if (result.success) {
-      res.status(200).json(result);
-    } else {
-      res.status(401).json(result);
+    try {
+      const { email, password } = req.body;
+
+      const result = await AuthService.login({
+        email,
+        password,
+      });
+
+      res.status(result.success ? 200 : 401).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message: "Internal server error",
+      });
     }
   }
 }

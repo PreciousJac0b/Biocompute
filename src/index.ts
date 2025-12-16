@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express, { Application } from 'express';
 import cors from 'cors';
 import authRoute from './routes/authRoute';
+import sequenceRoute from './routes/sequenceRoute';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(
 
 app.use(express.json());
 app.use('/api/auth', authRoute);
+app.use('/api/sequences', sequenceRoute);
 
 const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT, () => {

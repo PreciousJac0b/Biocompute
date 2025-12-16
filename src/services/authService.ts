@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import pool from "../config/db";
 import { RegisterInput, AuthResponse, LoginInput } from "../types/auth.types";
-import { HashUtils } from "../utils/hashUtil";
-import { JWTUtils } from "../utils/jwtUtil";
+import { HashUtils } from "../utils/hashUtils";
+import { JWTUtils } from "../utils/jwtUtils";
 
 
 export class AuthService {
