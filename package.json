@@ -1,0 +1,28 @@
+{
+  "name": "biocompute",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No tests to run'",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PreciousJac0b/Biocompute/issues"
+  },
+  "homepage": "https://github.com/PreciousJac0b/Biocompute#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/node": "^25.0.2",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
