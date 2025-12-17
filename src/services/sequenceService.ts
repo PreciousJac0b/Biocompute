@@ -102,7 +102,7 @@ export class SequenceService {
       const [rows]: any = await pool.execute(query, [userId]);
 
       return {
-        success: true,
+        success: rows.length > 0 ? true : false,
         message: rows.length > 0 ? "User sequences fetched successfully" : "No sequences found",
         data: rows,
       };
@@ -113,5 +113,40 @@ export class SequenceService {
         message: "Failed to fetch sequences",
       };
     }
+  }
+
+  static async getAllSequences() {
+    const query = `
+      SELECT 
+        s.id,
+        s.user_id,
+        s.sequence,
+        s.description,
+        s.length,
+        s.gc_content,
+        s.reverse_complement,
+        s.created_at,
+        u.email,
+        u.firstname,
+        u.lastname
+      FROM sequences s
+      JOIN users u ON s.user_id = u.id
+      ORDER BY s.created_at DESC
+    `;
+
+    const [rows]: any = await pool.execute(query);
+
+    if (rows.length === 0) {
+      return {
+        success: false,
+        message: "No sequences found",
+      };
+    }
+
+    return {
+      success: true,
+      message: "Sequences fetched successfully",
+      data: rows,
+    };
   }
 }
